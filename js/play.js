@@ -185,7 +185,7 @@ play.clickMan = function (key,x,y){
 			com.get("clickAudio").play();
 			setTimeout(play.AIPlay,500);
 			if (key == "j0") play.showWin (-1);
-			if (key == "J0") play.showWin (1);
+			if (key == "J0") play.showWin(1);
 		}
 	// 选中棋子
 	}else{
@@ -231,23 +231,23 @@ play.clickPoint = function (x,y){
 }
 
 //Ai自动走棋
-play.AIPlay = function (){
+play.AIPlay = async function () {
 	//return
-	play.my = -1 ;
-	var pace=AI.init(play.pace.join(""))
+	play.my = -1;
+	var pace = await AI.init(play.pace.join(""));
 	if (!pace) {
-		play.showWin (1);
-		return ;
+		play.showWin(1);
+		return;
 	}
 	play.pace.push(pace.join(""));
-	var key=play.map[pace[1]][pace[0]]
-		play.nowManKey = key;
+	var key = play.map[pace[1]][pace[0]];
+	play.nowManKey = key;
 	
 	var key=play.map[pace[3]][pace[2]];
 	if (key){
-		play.AIclickMan(key,pace[2],pace[3]);
+		play.AIclickMan(key, pace[2], pace[3]);
 	}else {
-		play.AIclickPoint(pace[2],pace[3]);
+		play.AIclickPoint(pace[2], pace[3]);
 	}
 	com.get("clickAudio").play();
 	
@@ -280,7 +280,7 @@ play.AIclickMan = function (key,x,y){
 	
 	com.show()
 	if (key == "j0") play.showWin (-1);
-	if (key == "J0") play.showWin (1);
+	if (key == "J0") play.showWin(1);
 }
 
 play.AIclickPoint = function (x,y){
